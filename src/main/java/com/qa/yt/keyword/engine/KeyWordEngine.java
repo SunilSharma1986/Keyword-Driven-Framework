@@ -11,10 +11,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebDriver;
 
+import com.qa.yt.keyword.base.Base;
+
 public class KeyWordEngine {
 	
 	public WebDriver driver;
 	public Properties prop;
+	public Base base;
 	
 	
 	public static Workbook book;
@@ -27,6 +30,9 @@ public class KeyWordEngine {
 	
 	public void startExecution(String sheetName)
 	{
+		String locatorName=null;
+		String locatorValue=null;
+		
 		FileInputStream file=null;
 		
 		try {
@@ -50,10 +56,23 @@ public class KeyWordEngine {
 			for(int i=0;i<sheet.getLastRowNum();i++)
 			{
 				String locatorColValue=sheet.getRow(i+1).getCell(k+1).toString().trim(); //get the locator column values
-				if(locatorColValue.equalsIgnoreCase("NA"))
+				if(!locatorColValue.equalsIgnoreCase("NA"))
 				{
-					 locatorColValue.split("=")[0].trim();
+					locatorName=locatorColValue.split("=")[0].trim();
 					
+					locatorValue=locatorColValue.split("=")[1].trim();
+				}
+				
+				String action=sheet.getRow(i+1).getCell(k+2).toString().trim();	
+				String value=sheet.getRow(i+1).getCell(k+3).toString().trim();	
+				
+				switch(action) {
+				case "open browser":
+					base = new Base();
+					base.init_properties();
+					
+					break;
+				
 				}
 			}
 		
