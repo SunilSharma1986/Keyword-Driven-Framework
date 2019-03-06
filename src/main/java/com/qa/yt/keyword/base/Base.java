@@ -40,8 +40,8 @@ public class Base {
 	{
 		prop=new Properties();
 		try {
-			FileInputStream ip=new FileInputStream("/Youtube/src/main/java/com"
-					+ "/qa/yt/keyword/config/config.properties");
+			FileInputStream ip=new FileInputStream("E:\\Workspace\\Youtube\\src\\main\\java"
+					+ "\\com\\qa\\yt\\keyword\\config\\config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
